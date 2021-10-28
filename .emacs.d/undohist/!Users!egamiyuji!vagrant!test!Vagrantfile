@@ -1,0 +1,12 @@
+
+((digest . "7bb65728dcb3c903df506674f5341ab3") (undo-list nil ("  #config.vm.provision \"file\", source: \"~/vagrant/gcp-secrets/multitor-key.json\", destination: \"/home/vagrant/multitor-key.json\"
+" . 3351) (t 24878 11452 314107 993000) nil ("  #$before_script = <<-SHELL
+  #  export CLIENT_SECRET=$(base64 ./workspace/key.json)
+  #  echo \"CLIENT_SECRET inline: $CLIENT_SECRET\"
+  #SHELL
+  #$before_script = <<-SCRIPT
+  #  echo \"export CLIENT_SECRET=$(base64 ./workspace/key.json)\" >> /root/.profile
+  #  echo \"CLIENT_SECRET inline: $CLIENT_SECRET\"
+  #SCRIPT
+  #config.vm.provision \"shell\", inline: $before_script
+" . -3232) 3602 nil (3723 . 3724) nil (nil rear-nonsticky nil 3847 . 3848) (nil fontified nil 3829 . 3848) (nil fontified nil 3817 . 3829) (nil fontified nil 3815 . 3817) (nil fontified nil 3814 . 3815) (nil fontified nil 3802 . 3814) (nil fontified nil 3800 . 3802) (nil fontified nil 3759 . 3800) (nil fontified nil 3758 . 3759) (nil fontified nil 3751 . 3758) (nil fontified nil 3749 . 3751) (nil fontified nil 3743 . 3749) (nil fontified nil 3723 . 3743) (3723 . 3848) nil (3720 . 3723) nil undo-tree-canary))
