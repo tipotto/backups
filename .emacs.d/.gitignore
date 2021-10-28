@@ -1,0 +1,14 @@
+*~
+.*~
+.DS_Store
+.mc-lists.el
+.scratch-log
+.scratch-log-prev
+ac-comphist.dat
+auto-save-list/
+autosave/
+backup/
+network-security.data
+recentf
+tramp
+undohist/

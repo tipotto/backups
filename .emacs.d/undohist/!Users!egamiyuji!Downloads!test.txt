@@ -1,2 +1,0 @@
-
-((digest . "8196422525ab49e5eaea5ef16f17b812") (undo-list (645 . 646) 1 nil (1 . 43) nil ("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" . -1) ((marker . 1) . -42) 43 nil undo-tree-canary))
