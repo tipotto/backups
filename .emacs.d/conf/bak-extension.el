@@ -1,10 +1,55 @@
 ;;; Emacsをより便利に使うための拡張設定を施します。
 (progn
-  
+
   ;; Enterによる改行を便利にします。
 ;  (use-package smart-newline :ensure t
 ;    :config
 ;    (define-key global-map (kbd "C-m") 'smart-newline))
+
+	;; eww
+  (defvar eww-disable-colorize t)
+  (defun shr-colorize-region--disable (orig start end fg &optional bg &rest _)
+    (unless eww-disable-colorize
+      (funcall orig start end fg)))
+  (advice-add 'shr-colorize-region :around 'shr-colorize-region--disable)
+  (advice-add 'eww-colorize-region :around 'shr-colorize-region--disable)
+  (defun eww-disable-color ()
+    "eww で文字色を反映させない"
+    (interactive)
+    (setq-local eww-disable-colorize t)
+    (eww-reload))
+  (defun eww-enable-color ()
+    "eww で文字色を反映させる"
+    (interactive)
+    (setq-local eww-disable-colorize nil)
+    (eww-reload))
+	
+  (defun eww-disable-images ()
+    "eww で画像表示させない"
+    (interactive)
+    (setq-local shr-put-image-function 'shr-put-image-alt)
+    (eww-reload))
+	
+  (defun eww-enable-images ()
+    "eww で画像表示させる"
+    (interactive)
+    (setq-local shr-put-image-function 'shr-put-image)
+    (eww-reload))
+	
+  (defun shr-put-image-alt (spec alt &optional flags)
+    (insert alt))
+	
+  ;; はじめから非表示
+  (defun eww-mode-hook--disable-image ()
+    (setq-local shr-put-image-function 'shr-put-image-alt))
+  (add-hook 'eww-mode-hook 'eww-mode-hook--disable-image)
+
+	(setq eww-search-prefix "https://www.google.co.jp/search?q=")
+	
+;	 (define-key eww-mode-map "R" 'eww-reload)
+;  (define-key eww-mode-map "C" 'eww-copy-page-url)
+;  (define-key eww-mode-map "p" 'scroll-down)
+;  (define-key eww-mode-map "n" 'scroll-up)
 
   ;; 自動補完を有効にします。
   (use-package company :ensure t
@@ -50,29 +95,29 @@
   ;;(use-package helm :ensure t)
   
   ;; バッファ切り替えを「C-x b」に続けて「b, n, p, N, P」で素早く実行できるようにします。
-  (global-unset-key (kbd "C-x b"))
-  (smartrep-define-key global-map (kbd "C-x b")
-    '(("b" . 'helm-for-files)
-      ("n" . 'next-buffer-noast)
-      ("p" . 'previous-buffer-noast)
-      ("N" . 'next-buffer)
-      ("P" . 'previous-buffer)))
-  (defun asterisked? (buf-name)
-    (= 42 (car (string-to-list buf-name))))
-  (defun next-buffer-noast ()
-    (interactive)
-    (let ((current-buffer-name (buffer-name)))
-      (next-buffer)
-      (while (and (asterisked? (buffer-name))
-                  (not (string= current-buffer-name (buffer-name))))
-        (next-buffer))))
-  (defun previous-buffer-noast ()
-    (interactive)
-    (let ((current-buffer-name (buffer-name)))
-      (previous-buffer)
-      (while (and (asterisked? (buffer-name))
-                  (not (string= current-buffer-name (buffer-name))))
-        (previous-buffer))))
+;;  (global-unset-key (kbd "C-x b"))
+;;  (smartrep-define-key global-map (kbd "C-x b")
+;;    '(("b" . 'helm-for-files)
+;;      ("n" . 'next-buffer-noast)
+;;      ("p" . 'previous-buffer-noast)
+;;      ("N" . 'next-buffer)
+;;      ("P" . 'previous-buffer)))
+;;  (defun asterisked? (buf-name)
+;;    (= 42 (car (string-to-list buf-name))))
+;;  (defun next-buffer-noast ()
+;;    (interactive)
+;;    (let ((current-buffer-name (buffer-name)))
+;;      (next-buffer)
+;;      (while (and (asterisked? (buffer-name))
+;;                  (not (string= current-buffer-name (buffer-name))))
+;;        (next-buffer))))
+;;  (defun previous-buffer-noast ()
+;;    (interactive)
+;;    (let ((current-buffer-name (buffer-name)))
+;;      (previous-buffer)
+;;      (while (and (asterisked? (buffer-name))
+;;                  (not (string= current-buffer-name (buffer-name))))
+;;        (previous-buffer))))
   
   ;; ウインドウサイズを「C-x 7」に続けて「b, f, p, n」で変更可能にします。
   ;; (defun resize-window (dir pos)

@@ -8,7 +8,12 @@ ac-comphist.dat
 auto-save-list/
 autosave/
 backup/
+undohist/
+url/
+eshell/
+sh4hack/
+sh4hack.el
 network-security.data
 recentf
 tramp
-undohist/
+kkcrc

@@ -1,9 +1,9 @@
 ;;; Emacsの基本設定を施します。
 (progn 
-  
+
   ;; 文字化け対策を施します。
-  (set-language-environment 'Japanese)
-  (prefer-coding-system 'utf-8)
+;;  (set-language-environment 'Japanese)
+;;  (prefer-coding-system 'utf-8)
 
   ;; Emacs起動時にスタートアップ画面を表示しないように設定します。
   (setq inhibit-startup-message t)
@@ -21,13 +21,13 @@
   (setq kill-whole-line t)
 
   ;; png, jpg などのファイルを画像として表示します。
-  (setq auto-image-file-mode t)
+;;  (setq auto-image-file-mode t)
 
   ;; タイトルバーにファイルのフルパスを表示します。
-  ;; (setq frame-title-format "%f")
+  (setq frame-title-format "%f")
   
   ;; メニューを非表示にします。
-  ;; (menu-bar-mode -1)
+  (menu-bar-mode -1)
   
   ;; 文字列が画面端で自動的に折り返されないようにし
   ;; 画面から文字が切捨られるときに表示される文字を変更します。
@@ -38,14 +38,14 @@
 
   ;; コマンドのエコーを素早くします。
   (setq echo-keystrokes 0.1)
-  
+
   ;; バッファ対象のファイルに変更のあった場合に自動再読み込みします。
-  (global-auto-revert-mode 1)
+;;  (global-auto-revert-mode 1)
 
   ;; 同名のバッファが存在する場合にはディレクトリ名を付与して区別できるようにします。
-  (use-package uniquify
-    :config
-    (setq uniquify-buffer-name-style 'post-forward-angle-brackets))
+;;  (use-package uniquify
+;;    :config
+;;    (setq uniquify-buffer-name-style 'post-forward-angle-brackets))
 
   ;; スクラッチバッファの初期テキストを空にします。
   (setq initial-scratch-message "")
@@ -54,59 +54,65 @@
   (use-package scratch-log :ensure t)
   
   ;; モードラインにカーソルの位置を表示します。
-  ;; (column-number-mode t)
+;;  (column-number-mode t)
   
   ;; 対応するカッコを強調表示するように設定します。
   (show-paren-mode t)
   
   ;; find-fileでURLを開けるようにします。
-  ;(url-handler-mode 1)
+;;  (url-handler-mode 1)
   
   ;; タブを無効化してスペースを挿入するようにします。
-  ;; (setq-default indent-tabs-mode nil)
+  (setq-default indent-tabs-mode nil)
   
   ;; デフォルトディレクトリを変更します。
-  (setq default-directory "~/") 
-  (setq command-line-default-directory "~/")
+;;  (setq default-directory "~/") 
+;;  (setq command-line-default-directory "~/")
 
   ;; ファイル名の補完で大文字小文字を区別しないようにします。
-  (setq read-buffer-completion-ignore-case t)
-  (setq read-file-name-completion-ignore-case t)
+;;  (setq read-buffer-completion-ignore-case t)
+;;  (setq read-file-name-completion-ignore-case t)
 
   ;; バッファメニューを開くときにウインドウを分割しないようにします。
-  ;; (bind-key "C-x C-b" 'buffer-menu)
+;;  (bind-key "C-x C-b" 'buffer-menu)
 
   ;; 基本カラーを設定します。
-  (when (not window-system)
-    ;(list-colors-display)
-    ;(list-faces-display)
-  
-    (set-face-foreground 'font-lock-comment-face "brightblack") ; コメントの色を設定
-    (set-face-foreground 'font-lock-function-name-face "brightblue") ; 関数名の色
-    (set-face-foreground 'font-lock-keyword-face "red") ; 関数名の色
-    (set-face-foreground 'font-lock-string-face "yellow") ; 文字列の色
-    (set-face-foreground 'font-lock-variable-name-face "brightmagenta") ; 変数名の色
-    (set-face-foreground 'font-lock-constant-face "green") ; 予約語の色
-  
-    (set-face-attribute 'region nil :foreground "black") ; 選択された文字色
-    (set-face-attribute 'region nil :background "white") ; 選択された文字の背景色
-    
-    (set-face-background 'mode-line "brightwhite") ; アクティブなモードライン文字色
-    (set-face-foreground 'mode-line "black") ; アクティブなモードライン背景色
-    (set-face-background 'mode-line-inactive "brightblack") ; モードライン文字色
-    (set-face-foreground 'mode-line-inactive "black")) ; モードライン背景色
+;;  (when (not window-system)
+;;    ;(list-colors-display)
+;;    ;(list-faces-display)
+;;  
+;;    (set-face-foreground 'font-lock-comment-face "brightblack") ; コメントの色を設定
+;;    (set-face-foreground 'font-lock-function-name-face "brightblue") ; 関数名の色
+;;    (set-face-foreground 'font-lock-keyword-face "red") ; 関数名の色
+;;    (set-face-foreground 'font-lock-string-face "yellow") ; 文字列の色
+;;    (set-face-foreground 'font-lock-variable-name-face "brightmagenta") ; 変数名の色
+;;    (set-face-foreground 'font-lock-constant-face "green") ; 予約語の色
+;;  
+;;    (set-face-attribute 'region nil :foreground "black") ; 選択された文字色
+;;    (set-face-attribute 'region nil :background "white") ; 選択された文字の背景色
+;;    
+;;    (set-face-background 'mode-line "brightwhite") ; アクティブなモードライン文字色
+;;    (set-face-foreground 'mode-line "black") ; アクティブなモードライン背景色
+;;    (set-face-background 'mode-line-inactive "brightblack") ; モードライン文字色
+;;    (set-face-foreground 'mode-line-inactive "black")) ; モードライン背景色
 
   ;; クリップボードをOSと共有します。
-  (use-package pbcopy :ensure t
+  (when (and (executable-find "xclip")
+						 (eq system-type 'gnu/linux))
+		(require 'xclip)
+    (xclip-mode 1))
+
+	(when (eq system-type 'darwin)
+		 (use-package pbcopy :ensure t
     :config
-    (turn-on-pbcopy))
+    (turn-on-pbcopy)))
   
   ;; ウインドウ分割時にカーソルを分割先に移動するようにします。
   (bind-key "C-x 2" '(lambda () (interactive) (split-window-below) (other-window 1)))
   (bind-key "C-x 3" '(lambda () (interactive) (split-window-right) (other-window 1)))
   (defadvice grep-find (after move-point-to-grep-find-window activate) (other-window 1))
   (defadvice occur (after move-point-to-grep-occur-window activate) (other-window 1))
-  
+
   ;; 非アクティブウインドウを暗転させます。
   (use-package hiwin :ensure t
     :config
@@ -117,22 +123,22 @@
       (set-face-background 'hiwin-face "black")))
   
   ;; trampを拡張してsshでsudoアクセスできるようにします。
-  (put 'temporary-file-directory 'standard-value '((file-name-as-directory "/tmp")))
-  ;(setenv "TMPDIR" "/tmp")
-  (use-package tramp
-    :config
-    (require 'ange-ftp)
-    (add-to-list 'tramp-remote-process-environment "HISTFILE=/dev/null")
-    (add-to-list 'tramp-default-proxies-alist
-                 '(nil "\\`root\\'" "/ssh:%h:"))
-    (add-to-list 'tramp-default-proxies-alist
-                 '("localhost" nil nil))
-    (add-to-list 'tramp-default-proxies-alist
-                 '((regexp-quote (system-name)) nil nil)))
+;;  (put 'temporary-file-directory 'standard-value '((file-name-as-directory "/tmp")))
+;;  ;(setenv "TMPDIR" "/tmp")
+;;  (use-package tramp
+;;    :config
+;;    (require 'ange-ftp)
+;;    (add-to-list 'tramp-remote-process-environment "HISTFILE=/dev/null")
+;;    (add-to-list 'tramp-default-proxies-alist
+;;                 '(nil "\\`root\\'" "/ssh:%h:"))
+;;    (add-to-list 'tramp-default-proxies-alist
+;;                 '("localhost" nil nil))
+;;    (add-to-list 'tramp-default-proxies-alist
+;;                 '((regexp-quote (system-name)) nil nil))
 
 	;; multi-termを使えるようにします。
 	(when (require 'multi-term nil t)
-		(setq multi-term-program "/bin/bash"))
+		(setq multi-term-program "/usr/bin/zsh"))
 
 	;; Helmを使えるようにします。
 	(require 'helm-config)
