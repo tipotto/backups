@@ -4,6 +4,7 @@
 .mc-lists.el
 .scratch-log
 .scratch-log-prev
+bak*
 ac-comphist.dat
 auto-save-list/
 autosave/
