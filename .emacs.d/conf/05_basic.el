@@ -1,6 +1,6 @@
 ;; 文字サイズを設定します。
-;(set-face-attribute 'default nil :height 150)
-(set-face-attribute 'default nil :height 180)
+(set-face-attribute 'default nil :height 150)
+;(set-face-attribute 'default nil :height 180)
 
 ;; 起動時の画面サイズを設定します。
 (add-to-list 'default-frame-alist '(fullscreen . maximized))

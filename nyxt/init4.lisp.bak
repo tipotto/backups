@@ -1,0 +1,116 @@
+(defvar *web-keymap* (make-keymap "web-map"))
+(defvar *base-keymap* (make-keymap "base-map"))
+
+(define-key *web-keymap*
+  "C-M-f" 'nyxt/web-mode:history-forwards-all-query
+  "C-M-b" 'nyxt/web-mode:history-all-query
+  "M-f" 'nyxt/web-mode:history-forwards-query
+  "M-b" 'nyxt/web-mode:history-backwards-query
+;  "C-f" 'nyxt/web-mode:history-forwards
+;  "C-b" 'nyxt/web-mode:history-backwards
+  "C-g" 'nothing
+  "M-g M-g" 'nyxt/web-mode:follow-hint
+  "M-g g" 'nyxt/web-mode:follow-hint-new-buffer-focus
+  "C-u M-g M-g" 'nyxt/web-mode:follow-hint-new-buffer
+  "C-u M-g g" 'nyxt/web-mode:follow-hint-new-buffer
+  "C-M-g C-M-g" 'nyxt/web-mode:follow-hint-nosave-buffer-focus
+  "C-M-g g" 'nyxt/web-mode:follow-hint-nosave-buffer
+  "C-x C-w" 'nyxt/web-mode:copy-hint-url
+  "C-y" 'nyxt/web-mode:paste  
+  "M-w" 'nyxt/web-mode:copy
+  "C-/" 'nyxt/web-mode:undo
+  "M-/" 'nyxt/web-mode:redo
+  "C-w" 'nyxt/web-mode:cut
+  "C-x h" 'nyxt/web-mode:select-all
+  "M-n" 'nyxt/web-mode:history-forwards
+  "M-p" 'nyxt/web-mode:history-backwards
+;  "C-p" 'nothing
+;  "C-n" 'nothing
+  "C-p" 'nyxt/web-mode:scroll-up
+  "C-n" 'nyxt/web-mode:scroll-down
+  "C-x C-+" 'nyxt/web-mode:zoom-page
+  "C-x C-=" 'nyxt/web-mode:zoom-page
+  "C-x C-hyphen" 'nyxt/web-mode:unzoom-page
+  "C-x C-0" 'nyxt/web-mode:reset-page-zoom
+  "C-m g" 'nyxt/web-mode:bookmark-hint
+  "C-s s" 'nyxt/web-mode:search-buffer
+  "C-s k" 'nyxt/web-mode:remove-search-hints
+  "C-." 'nyxt/web-mode:jump-to-heading
+  "M->" 'nyxt/web-mode:scroll-to-bottom
+  "M-<" 'nyxt/web-mode:scroll-to-top
+  "C-v" 'nyxt/web-mode:scroll-page-down
+  "M-v" 'nyxt/web-mode:scroll-page-up
+  "C-u C-x C-f" 'edit-with-external-editor
+  "C-f" 'nyxt/web-mode:scroll-right
+  "C-b" 'nyxt/web-mode:scroll-left
+  "M-y" 'nyxt/web-mode:paste-from-clipboard-ring
+  "C-a" 'nothing
+  "C-e" 'nothing
+  "C-h" 'nothing
+  "C-d" 'nothing
+  "C-k" 'nothing
+  "C-u" 'nothing
+  )
+
+(define-key *base-keymap*
+  "C-l" 'set-url
+  "M-l" 'set-url-new-buffer
+  "C-f" 'nyxt/web-mode:scroll-right
+  "C-b" 'nyxt/web-mode:scroll-left
+  "C-x C-f" 'open-file
+  "C-c C-f" 'nyxt/buffer-listing-mode:list-buffers
+  "C-x k" 'delete-buffer
+  "C-x C-k" 'delete-all-buffers
+  "C-x C-c" 'quit
+;  "C-n" 'nothing
+;  "C-p" 'nothing
+;  "C-f" 'nothing
+;  "C-b" 'nothing
+;  "C-n" 'nyxt/web-mode:scroll-down
+;  "C-p" 'nyxt/web-mode:scroll-up
+;  "C-f" 'nyxt/web-mode:scroll-right
+;  "C-b" 'nyxt/web-mode:scroll-left
+;  "C-y" 'nyxt/web-mode:paste
+;  "M-y" 'nyxt/web-mode:paste-from-clipboard-ring
+;  "C-a" 'nothing
+;  "C-e" 'nothing
+  "C-i" 'nothing
+  "C-M-i" 'nothing
+;  "C-h" 'nothing
+;  "C-d" 'nothing
+  "C-m" 'nothing
+;  "C-k" 'nothing
+;  "C-u" 'nothing
+  "C-g" 'nothing
+  "C-space" 'nothing
+;  "M-<" 'nyxt/web-mode:scroll-to-top
+;  "M->" 'nyxt/web-mode:scroll-to-bottom
+  "M-x" 'execute-command
+;  "M-w" 'nyxt/web-mode:copy
+;  "C-w" 'nyxt/web-mode:cut
+;  "C-/" 'nyxt/web-mode:undo
+;  "M-/" 'nyxt/web-mode:redo
+;  "M-n" 'nyxt/web-mode:history-forwards
+;  "M-p" 'nyxt/web-mode:history-backwards
+  "C-x o" 'switch-buffer-next
+  "C-c p" 'switch-buffer-next
+  "C-c n" 'switch-buffer-previous
+;  "C-x h" 'nyxt/web-mode:select-all
+  )
+
+(define-mode web-mode ()
+  "Mode for custom key bindings in `*web-keymap*'."
+  ((keymap-scheme (keymap:make-scheme
+                   scheme:cua *web-keymap*
+                   scheme:emacs *web-keymap*
+                   scheme:vi-normal *web-keymap*))))
+
+(define-mode base-mode ()
+  "Mode for custom key bindings in `*base-keymap*'."
+  ((keymap-scheme (keymap:make-scheme
+                   scheme:cua *base-keymap*
+                   scheme:emacs *base-keymap*
+                   scheme:vi-normal *base-keymap*))))
+
+(define-configuration (buffer web-buffer)
+  ((default-modes (append '(web-mode base-mode) %slot-default%))))
