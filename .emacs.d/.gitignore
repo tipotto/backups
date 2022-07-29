@@ -12,9 +12,8 @@ backup/
 undohist/
 url/
 eshell/
-sh4hack/
-sh4hack.el
 network-security.data
 recentf
 tramp
 kkcrc
+sh4hack*

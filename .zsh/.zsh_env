@@ -1,0 +1,3 @@
+#export EDITOR="emacsclient -nw -a ''"
+export thm_lhost=10.4.49.251
+#export htb_lhost=10.10.14.7

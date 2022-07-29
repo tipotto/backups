@@ -1,5 +1,6 @@
 ;; 文字サイズを設定します。
-(set-face-attribute 'default nil :height 170)
+;(set-face-attribute 'default nil :height 150)
+(set-face-attribute 'default nil :height 180)
 
 ;; 起動時の画面サイズを設定します。
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
@@ -18,6 +19,12 @@
 (setq async-shell-command-buffer 'new-buffer)
 
 (add-to-list 'display-buffer-alist '("*Async Shell Command*" display-buffer-no-window (nil)))
+
+;; シンボリックリンクの読み込みを許可します
+(setq vc-follow-symlinks t)
+
+;; シンボリックリンク先のVCSに更新があった場合、バッファを自動更新します
+(setq auto-revert-check-vc-info t)
 
 ;; ビープ音を禁止します。
 (setq ring-bell-function 'ignore)

@@ -1,0 +1,17 @@
+alias ll='ls -lha'
+alias ..='cd ../'
+alias ...='cd ../../'
+alias ....='cd ../../../'
+alias cdc='cd -'
+alias cdt='cd ~/hack/thm'
+alias cdh='cd ~/hack/htb'
+alias cdcc='cd ~/hack/thm/ctf'
+alias thm='sudo bash ~/hack/thm/vpn/thm-troubleshoot'
+#alias htb='sudo openvpn ~/hack/htb/vpn/tipotto.ovpn'
+#alias htb='sudo openvpn ~/hack/htb/vpn/lab_tipotto.ovpn'
+
+#alias e="emacsclient -nw -a ''"
+#alias emacs="emacsclient -nw -a ''"
+#alias ekill="emacsclient -e '(kill-emacs)'"
+#alias erestart="ekill && estart"
+alias www="nyxt"
