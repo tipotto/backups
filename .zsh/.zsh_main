@@ -1,14 +1,3 @@
-EMACS=`ps auxww | grep "emacs" | grep -v grep | wc -l`
-if [ $EMACS = 0 ]; then
-   #emacs --daemon >/dev/null 2>&1 &
-   emacs &
-fi
-
-XKEYSNAIL=`ps auxww | grep "xkeysnail" | grep -v grep | wc -l`
-if [ $XKEYSNAIL = 0 ]; then
-  sudo xkeysnail /home/vagrant/xkeysnail/config.py -q >/dev/null 2>&1 &
-fi
-
 #HTB=`ps auxww | grep "lab_tipotto" | grep -v grep | wc -l`
 #if [ $HTB = 0 ]; then
 #  sudo openvpn /home/vagrant/hack/htb/vpn/lab_tipotto.ovpn >/dev/null 2>&1 &
@@ -16,5 +5,17 @@ fi
 
 THM=`ps auxww | grep "tipotto" | grep -v grep | wc -l`
 if [ $THM = 0 ]; then
-  sudo bash /home/vagrant/hack/thm/vpn/thm-troubleshoot >/dev/null 2>&1
+  #sudo bash /home/vagrant/hack/thm/vpn/thm-troubleshoot
+  sudo openvpn /home/vagrant/hack/thm/vpn/tipotto.ovpn >/dev/null 2>&1 &
+fi
+
+XKEYSNAIL=`ps auxww | grep "xkeysnail" | grep -v grep | wc -l`
+if [ $XKEYSNAIL = 0 ]; then
+  sudo xkeysnail /home/vagrant/xkeysnail/config.py -q >/dev/null 2>&1 &
+fi
+
+EMACS=`ps auxww | grep "emacs" | grep -v grep | wc -l`
+if [ $EMACS = 0 ]; then
+   #emacs --daemon >/dev/null 2>&1 &
+   emacs &
 fi

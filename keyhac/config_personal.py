@@ -39,7 +39,49 @@ fc.ime = "old_Microsoft_IME"
 
 # Emacs のキーバインドに“したくない”アプリケーションソフトを指定する
 # （Keyhac のメニューから「内部ログ」を ON にすると processname や classname を確認することができます）
-fc.not_emacs_target    += []
+fc.not_emacs_target     = ["wsl.exe",                # WSL
+                           "bash.exe",               # WSL
+                           "ubuntu.exe",             # WSL
+                           "ubuntu1604.exe",         # WSL
+                           "ubuntu1804.exe",         # WSL
+                           "ubuntu2004.exe",         # WSL
+                           "debian.exe",             # WSL
+                           "kali.exe",               # WSL
+                           "SLES-12.exe",            # WSL
+                           "openSUSE-42.exe",        # WSL
+                           "openSUSE-Leap-15-1.exe", # WSL
+                           "mstsc.exe",              # Remote Desktop
+                           "WindowsTerminal.exe",    # Windows Terminal
+                           "mintty.exe",             # mintty
+                           "Cmder.exe",              # Cmder
+                           "ConEmu.exe",             # ConEmu
+                           "ConEmu64.exe",           # ConEmu
+                           "emacs.exe",              # Emacs
+                           "emacs-X11.exe",          # Emacs
+                           "emacs-w32.exe",          # Emacs
+                           "gvim.exe",               # GVim
+                           "xyzzy.exe",              # xyzzy
+                           "VirtualBox.exe",         # VirtualBox
+                           "msrdc.exe",              # WSLg
+                           "XWin.exe",               # Cygwin/X
+                           "XWin_MobaX.exe",         # MobaXterm/X
+                           "XWin_MobaX_1.16.3.exe",  # MobaXterm/X
+                           "XWin_Cygwin_1.14.5.exe", # MobaXterm/X
+                           "XWin_Cygwin_1.16.3.exe", # MobaXterm/X
+                           "Xming.exe",              # Xming
+                           "vcxsrv.exe",             # VcXsrv
+                           "GWSL_vcxsrv.exe",        # GWSL
+                           "GWSL_vcxsrv_lowdpi.exe", # GWSL
+                           "X410.exe",               # X410
+                           "Xpra-Launcher.exe",      # Xpra
+                           "putty.exe",              # PuTTY
+                           "ttermpro.exe",           # TeraTerm
+                           "MobaXterm.exe",          # MobaXterm
+                           "TurboVNC.exe",           # TurboVNC
+                           "vncviewer.exe",          # UltraVNC
+                           "vncviewer64.exe",        # UltraVNC
+                           "Code.exe",               # VSCode
+                           ]                               
 
 # IME の切り替え“のみをしたい”アプリケーションソフトを指定する
 # （指定できるアプリケーションソフトは、not_emacs_target で（除外）指定したものからのみとなります）
@@ -51,8 +93,7 @@ fc.ime_target          += []
 #   利用することができます。）
 # （ここで指定したキーに新たに別のキー設定をしたいときには、「-2」が付くセクション内で define_key2
 #   関数を利用して定義してください）
-fc.skip_settings_key    = {
-                           "keymap_global"    : [], # 全画面共通 Keymap
+fc.skip_settings_key    = {"keymap_global"    : [], # 全画面共通 Keymap
                            "keymap_emacs"     : [], # Emacs キーバインド対象アプリ用 Keymap
                            "keymap_ime"       : [], # IME 切り替え専用アプリ用 Keymap
                            "keymap_ei"        : [], # Emacs 日本語入力モード用 Keymap
@@ -63,8 +104,7 @@ fc.skip_settings_key    = {
 # Emacs のキーバインドにするアプリケーションソフトで、Emacs キーバインドから除外するキーを指定する
 # （リストに指定するキーは、Keyhac で指定可能なマルチストロークではないキーとしてください。
 #   Fakeymacs の記法の "M-f" や "Ctl-x d" などの指定はできません。"A-v"、"C-v" などが指定可能です。）
-fc.emacs_exclusion_key  = {
-                           "vivaldi.exe"      : ["C-l", "C-s", "C-r"],
+fc.emacs_exclusion_key  = {"vivaldi.exe"      : ["C-l", "C-s", "C-r"],
                            "chrome.exe"       : ["C-l", "C-t"],
                            "msedge.exe"       : ["C-l", "C-t"],
                            "firefox.exe"      : ["C-l", "C-t"],

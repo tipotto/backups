@@ -1,10 +1,9 @@
 (global-set-key (kbd "C-c p") 'multi-term-next)
 (global-set-key (kbd "C-c n") 'multi-term-prev)
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
-;(global-set-key (kbd "M-x") 'shell-command)
+(global-set-key (kbd "s-x") 'shell-command)
 
 ;; eval-bufferを一手間省略します。
-;(advice-add 'eval-buffer :after '(lambda () (message "Buffer is evaluated.")))
 ;(advice-add 'eval-buffer :before '(lambda () (message "Buffer is evaluated.")))
 (global-set-key (kbd "C-c C-e") 'eval-buffer)
 
@@ -18,7 +17,6 @@
 (global-set-key (kbd "C-c v") 'describe-variable)
 
 ;; nyxtに気軽にアクセスできるようにします。
-;(global-set-key (kbd "C-c o w") 'eww)
 (global-set-key (kbd "C-c o w") '(lambda () (interactive) (async-shell-command "nyxt")))
 
 ;; C-uをカーソル位置から行頭まで1行削除に割り当てます。
@@ -62,6 +60,7 @@
     ("n" . windmove-down) 
     ("o" . other-window) 
     ("O" . (other-window -1)))))))
+
 (global-set-key (kbd "C-x O") (lambda ()
   (interactive) 
   (funcall (smartrep-map '(
@@ -74,10 +73,7 @@
     ("O" . (other-window -1)))))))
 
 (require 'go-translate)
-
-;; your languages pair used to translate
 (setq gts-translate-list '(("en" "ja") ("ja" "en")))
-
 (defconst deepl-api-key "746f8e9b-0613-9745-d239-559aa5eece7c:fx")
 (defvar my-translator-n
   (gts-translator :picker (gts-prompt-picker)
@@ -93,4 +89,3 @@
   (gts-translate my-translator-n))
 
 (global-set-key (kbd "C-c t") 'translate)
-

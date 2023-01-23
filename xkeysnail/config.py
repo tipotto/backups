@@ -244,40 +244,28 @@ define_keymap(re.compile("Vivaldi-stable"), {
 define_keymap(re.compile("Nyxt"), {
 
     # Cursor
-#    K("C-b"): with_mark(K("left")),
-#    K("C-f"): with_mark(K("right")),
-#    K("C-p"): with_mark(K("up")),
-#    K("C-n"): with_mark(K("down")),
-#    K("C-a"): with_mark(K("home")),
-#    K("C-e"): with_mark(K("end")),
+    K("C-n"): K("down"),
+    K("C-p"): K("up"),
+    K("C-f"): K("right"),
+    K("C-b"): K("left"),
+    
+    # Beginning/End of line
+    K("C-a"): K("C-home"),
+    K("C-e"): K("C-end"),
     
     # Newline
     K("C-m"): K("enter"),
 
-    # Copy
-#    K("C-w"): [K("C-x"), set_mark(False)],
-#    K("M-w"): [K("C-c"), set_mark(False)],
-#    K("C-y"): [K("C-v"), set_mark(False)],
-    
     # Cancel
-#    K("C-g"): K("esc"),
+    K("C-g"): K("esc"),
 
     # Backspace/Delete
-    K("C-h"): with_mark(K("backspace")),
-    K("C-d"): [K("delete"), set_mark(False)],
-
-    # Kill line
-#    K("C-k"): [K("Shift-end"), K("C-w"), set_mark(False)],
-#    K("C-u"): [K("Shift-home"), K("C-w"), set_mark(False)],
+    K("C-h"): K("backspace"),
+    K("C-d"): K("delete"),
 
     # Tab
     K("C-i"): K("TAB"),
 #    K("C-Shift-i"): K("Shift-TAB"),
     K("C-M-i"): K("Shift-TAB"),
-
-    # C-x YYY
-#    K("C-x"): {
-#        K("C-f"): pass_through_key,
-#    }
     
 }, "Custom keybindings for Nyxt")

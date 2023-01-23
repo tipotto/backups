@@ -3,16 +3,16 @@
   :config
   
   ;; 削除したファイルをゴミ箱へ移動するようにします。
-;;  (setq delete-by-moving-to-trash t)
+  (setq delete-by-moving-to-trash t)
 
-  ;; diredのが利用するlsコマンドのオプションを変更します。
+  ;; diredが利用するlsコマンドのオプションを変更します。
 ;;  (setq dired-listing-switches "-Ahl")
 
   ;; diredにFinderで開く機能を追加します。
 ;;  (define-key dired-mode-map (kbd "F") '(lambda () (interactive) (shell-command (concat "open ."))))
 
   ;; diredでウィンドウを２つ開いている時にコピーや移動のデフォルトパスをもう一方で開いてるディレクトリにします。
-;;   (setq dired-dwim-target t)
+  (setq dired-dwim-target t)
   
   ;; diredでインクリメンタルサーチした時にファイル名だけにマッチするようにします。
 ;;  (setq dired-isearch-filenames t)

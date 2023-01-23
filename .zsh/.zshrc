@@ -48,16 +48,17 @@ PROMPT_EOL_MARK=""
 
 # configure key keybindings
 bindkey -e                                        # emacs key bindings
-bindkey '^K' kill-line
-bindkey '^ ' set-mark-command
+bindkey '^k' kill-line
+bindkey '^u' backward-kill-line
 bindkey '^w' kill-region
-#bindkey '^p' beginning-of-buffer-or-history
-#bindkey '^n' end-of-buffer-or-history
+bindkey '^[w' copy-region
+bindkey '^d' delete-char-or-list-or-region
+bindkey '^h' backward-delete-char-or-region
+bindkey '^ ' set-mark-command
 bindkey '^/' undo
 bindkey '^[/' redo
-bindkey '^[w' copy-region
-bindkey '^h' backward-delete-char-or-region
-bindkey '^d' delete-char-or-list-or-region
+#bindkey '^p' beginning-of-buffer-or-history
+#bindkey '^n' end-of-buffer-or-history
 
 #bindkey ' ' magic-space                           # do history expansion on space
 #bindkey '^[[3;5~' kill-word                       # ctrl + Supr

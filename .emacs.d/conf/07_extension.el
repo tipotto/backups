@@ -82,15 +82,26 @@
 ;; sh4hackを使えるようにします。
 (require 'sh4hack)
 
+(defun run-on-startup ()
+  (interactive)
+  (let ((dir (if (string= "10.4.1.239" sh4h-lhost) "thm" "htb")))
+    (find-file (format "~/hack/%s" dir))
+    (split-window-right)
+    (other-window 1)
+    (multi-term)))
+
+(add-hook 'after-init-hook #'run-on-startup)
+
 (require 'tty-format)
 
-;; M-x display-ansi-colors to explicitly decode ANSI color escape sequences                                                                                                                                        
+;; M-x display-ansi-colors to explicitly decode ANSI color escape sequences
 (defun display-ansi-colors ()
   (interactive)
   (format-decode-buffer 'ansi-colors))
 
-;; decode ANSI color escape sequences for *.txt or README files                                                                                                                                                    
+;; decode ANSI color escape sequences for *.txt or README files
 (add-hook 'find-file-hooks 'tty-format-guess)
 
-;; decode ANSI color escape sequences for .log files                                                                                                                                                               
+;; decode ANSI color escape sequences for files with the following extensions
 (add-to-list 'auto-mode-alist '("\\.log\\'" . display-ansi-colors))
+(add-to-list 'auto-mode-alist '("\\.out\\'" . display-ansi-colors))
